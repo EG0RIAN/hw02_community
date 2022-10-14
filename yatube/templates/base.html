@@ -1,5 +1,6 @@
 {% load static %}
-<!DOCTYPE html> 
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %}</title>
 <html lang="ru">          
   <head> 
     {% include 'includes/head.html' %}
@@ -13,7 +14,7 @@
         Нет контента
         {% endblock %}
     </main>
-    <footer>
+    <footer class="border-top text-center py-3">
       {% include 'includes/footer.html' %} 
     </footer>
   </body>

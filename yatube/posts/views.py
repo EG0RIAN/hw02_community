@@ -1,7 +1,8 @@
 # posts/views.py
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 # Импортируем модель, чтобы обратиться к ней
-from .models import Post
+from .models import Post, Group
+
 
 def index(request):
     # Одна строка вместо тысячи слов на SQL:
@@ -13,6 +14,7 @@ def index(request):
         'page_obj': page_obj,
     }
     return render(request, 'posts/index.html', context)
+
 
 def group_posts(request, slug):
     # Функция get_object_or_404 получает по заданным критериям объект 
