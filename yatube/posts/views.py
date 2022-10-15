@@ -26,7 +26,7 @@ def group_posts(request, slug):
     # Метод .filter позволяет ограничить поиск по критериям.
     # Это аналог добавления
     # условия WHERE group_id = {group_id}
-    posts = (
+    posts = list(
         Post
         .objects
         .filter(group=group)
