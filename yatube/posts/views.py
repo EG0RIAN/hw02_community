@@ -1,8 +1,8 @@
-
 from django.shortcuts import get_object_or_404, render
 
 from .models import Post, Group
 
+POST_PER_PAGE = 10
 
 def index(request):
     posts = (
@@ -15,13 +15,9 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-
-    # Метод .filter позволяет ограничить поиск по критериям.
-    # Это аналог добавления
-    # условия WHERE group_id = {group_id}
     posts = (
         Post.objects.filter(group=group)
-        .order_by('-pub_date')[:10]
+        .order_by('-pub_date').POST_PER_PAGE
     )
 
     context = {
