@@ -1,15 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Post, Group
+from yatube.settings import POST_PER_PAGE
 
-from django.conf import settings
+from .models import Group, Post
 
 
 def index(request):
     posts = (
-        Post.objects
-        .order_by('-pub_date').settings
-        .POST_PER_PAGE
+        Post.objects.all()[:POST_PER_PAGE]
     )
     context = {'posts': posts, }
     return render(request, 'posts/index.html', context)
@@ -18,8 +16,7 @@ def index(request):
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = (
-        Post.objects.filter(group=group)
-        .POST_PER_PAGE
+        Post.objects.filter(group=group)[:POST_PER_PAGE]
     )
 
     context = {
