@@ -1,7 +1,8 @@
-
 from django.db import models
+
 from django.contrib.auth import get_user_model
-# Это имеллось ввиду?
+
+
 User = get_user_model()
 
 
@@ -27,5 +28,8 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='group',
+        related_name='group_posts',
     )
+    
+    class Meta:
+        ordering = ("-pub_date",)

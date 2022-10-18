@@ -2,12 +2,13 @@ from django.shortcuts import get_object_or_404, render
 
 from .models import Post, Group
 
-POST_PER_PAGE = 10
+from .settings import POST_PER_PAGE
+
 
 def index(request):
     posts = (
         Post.objects
-        .order_by('-pub_date')[:10]
+        .settings.POST_PER_PAGE
     )
     context = {'posts': posts, }
     return render(request, 'posts/index.html', context)
