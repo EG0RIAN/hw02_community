@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 
-from yatube.settings import POST_PER_PAGE
-
 from .models import Group, Post
+
+POST_PER_PAGE = 10
 
 
 def index(request):
